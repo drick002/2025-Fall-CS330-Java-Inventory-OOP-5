@@ -22,14 +22,14 @@ public class ToolCreation implements ItemCreationStrategy
     public Item fromDefaults()
     {
         // Maybe call a Default Constructor...
-        return null;
+        return new Tool();
     }
 
     @Override
     public int requiredNumberOfValues()
     {
         // What is the correct return value?
-        return -1;
+        return 6;
     }
 
     @SuppressWarnings({
@@ -40,7 +40,13 @@ public class ToolCreation implements ItemCreationStrategy
     public Item fromTokens(final String... tokens)
     {
         // Maybe call a Constructor that accepts multiple arguments...
-        return new Tool();
+        return new Tool((tokens[0]), 
+                   Integer.parseInt(tokens[2]),
+                   Integer.parseInt(tokens[3]),
+                   tokens[1],
+                   tokens[4],
+                   Integer.parseInt(tokens[5]))
+                   ;
     }
 
     @SuppressWarnings({
@@ -58,6 +64,11 @@ public class ToolCreation implements ItemCreationStrategy
         Tool theOriginal = (Tool) original;
 
         // Maybe call a Constructor that accepts multiple arguments...
-        return new Tool();
+        return new Tool(theOriginal.getName(), 
+                        theOriginal.getDurability(), 
+                        theOriginal.getSpeed(), 
+                        theOriginal.getMaterial(), 
+                        theOriginal.getModifier(), 
+                        theOriginal.getModifierLevel());
     }
 }
